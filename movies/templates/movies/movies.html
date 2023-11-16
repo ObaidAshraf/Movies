@@ -9,7 +9,7 @@
     <h1>Movies</h1>
     <ul>
     {% for movie in movies %}
-        <li>{{movie.title}} from {{movie.year}} </li>
+        <li><a href='{{movie.id}}'>{{movie.title}}</a></li>
     {% endfor %}
     </ul>
 </body>
