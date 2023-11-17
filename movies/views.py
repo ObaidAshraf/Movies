@@ -13,6 +13,15 @@ class HomeView(TemplateView):
         context['data'] = 'Hello to Movies'
         return context
 
+class MoviesView(TemplateView):
+
+    template_name = "movies/movies.html"
+
+    def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
+        context = super().get_context_data(**kwargs)
+        context['movies'] = Movie.objects.all()
+        return context
+
 def movies(request):
     data = Movie.objects.all()
     return render(request, 'movies/movies.html', {'movies': data})

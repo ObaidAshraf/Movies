@@ -18,13 +18,13 @@ from django.contrib import admin
 from django.urls import path
 from movies import views
 from django.views.generic import TemplateView
-from .views import HomeView
+from .views import HomeView, MoviesView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     # path('', views.home),
     path('', HomeView.as_view()),
-    path('movies/', views.movies),
+    path('movies/', MoviesView.as_view()),
     path('movies/<int:id>', views.detail),
     path('movies/add', views.add),
     path('movies/delete/<int:id>', views.delete)
