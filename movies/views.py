@@ -1,6 +1,17 @@
+from typing import Any
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from .models import Movie
+from django.views.generic import TemplateView
+
+class HomeView(TemplateView):
+
+    template_name = 'movies/home.html'
+
+    def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
+        context = super().get_context_data(**kwargs)
+        context['data'] = 'Hello to Movies'
+        return context
 
 def movies(request):
     data = Movie.objects.all()
