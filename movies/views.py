@@ -28,7 +28,7 @@ class MovieDetailsUpdateView(RedirectView):
 
     def get_redirect_url(self, *args: Any, **kwargs: Any) -> str | None:
         movie = get_object_or_404(Movie, pk=kwargs['pk'])
-        movie.count = (1 if not movie.count else movie.count) + 1
+        movie.count = movie.count + 1
         movie.save()
 
         return super().get_redirect_url(*args, **kwargs)
