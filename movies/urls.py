@@ -17,15 +17,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from movies import views
-from django.views.generic import TemplateView
-from .views import HomeView, MoviesView
+from .views import HomeView, MoviesView, MovieDetailsUpdateView, SingleMovieDetailView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     # path('', views.home),
     path('', HomeView.as_view()),
     path('movies/', MoviesView.as_view()),
-    path('movies/<int:id>', views.detail),
+    path('movies/detail/<int:pk>', MovieDetailsUpdateView.as_view(), name='movie-detail-update'),
+    path('movies/<int:pk>', SingleMovieDetailView.as_view(), name='movie-detail'),
     path('movies/add', views.add),
     path('movies/delete/<int:id>', views.delete)
 ]
