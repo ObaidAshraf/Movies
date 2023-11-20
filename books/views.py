@@ -2,18 +2,15 @@ from typing import Any
 from django.shortcuts import render
 from django.views.generic import TemplateView
 from django.views.generic.detail import DetailView
+from django.views.generic.list import ListView
 from django.utils import timezone
 from .models import Book
 
-class IndexView(TemplateView):
-    
-    template_name = 'books/home.html'
+class IndexView(ListView):
 
-    def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
-        context = super().get_context_data(**kwargs)
-        context['books'] = Book.objects.all()
-        return context
-    
+    model = Book    
+    template_name = 'books/home.html'
+    context_object_name = "books"
 
 class BookDetailView(DetailView):
 
