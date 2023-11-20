@@ -6,6 +6,10 @@
     <title>Books</title>
 </head>
 <body>
-    
+    <ul>
+    {% for book in books %}
+        <li><a href="{% url 'book-detail' slug=book.slug %}">{{book.title}}</a></li>
+    {% endfor %}
+    </ul>
 </body>
 </html>
