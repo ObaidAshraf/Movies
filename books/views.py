@@ -1,4 +1,5 @@
 from typing import Any
+from django.db.models.query import QuerySet
 from django.shortcuts import render
 from django.views.generic import TemplateView
 from django.views.generic.detail import DetailView
@@ -11,7 +12,10 @@ class IndexView(ListView):
     model = Book    
     template_name = 'books/home.html'
     context_object_name = "books"
-    paginate_by = 1
+    paginate_by = 4
+
+    def get_queryset(self) -> QuerySet[Any]:
+        return Book.objects.all()[:2]
 
 class BookDetailView(DetailView):
 

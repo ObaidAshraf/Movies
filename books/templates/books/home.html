@@ -11,5 +11,19 @@
         <li><a href="{% url 'book-detail' slug=book.slug %}">{{book.title}}</a></li>
     {% endfor %}
     </ul>
+
+    <p>
+        {% if page_obj.has_previous %}
+        <a href="?page=1">first</a>
+        <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+    </p>
+    <p> Page {{page_obj.number}} of {{page_obj.paginator.num_pages}}</p>
+    <p>
+        {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}">Next</a>
+        <a href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+        {% endif %}
+    </p>
 </body>
 </html>
